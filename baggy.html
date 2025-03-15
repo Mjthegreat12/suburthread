@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baggy</title>
+</head>
+<style>
+    body {
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #231e1a;
+        }
+    
+        header {
+                background: linear-gradient(135deg, #a79e8f, #231e1a);
+                color: #fff;
+                padding: 20px 0;
+                text-align: center;
+                position: relative; 
+            }
+            
+            .logo h1 {
+                margin: 0;
+                font-size: 2.5em;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+            }
+            
+            nav ul {
+                list-style: none;
+                padding: 0;
+                display: inline-block; 
+            }
+            
+            nav ul li {
+                display: inline; 
+                margin: 0 30px;
+            }
+            
+            nav ul li a {
+                color: #fff;
+                text-decoration: none;
+                font-weight: bold;
+                position: relative;
+                transition: color 0.3s, transform 0.3s;
+            }
+            
+            nav ul li a:hover {
+                color: #a79e8f;
+                transform: scale(1.1); 
+            }
+            
+            .search-container {
+                margin-top: 10px; 
+            }
+            
+            .search-container input[type="text"] {
+                padding: 10px;
+                width: 200px;
+                border: none;
+                border-radius: 3px;
+            }
+            
+            .search-container button {
+                padding: 10px;
+                background-color: #a79e8f;
+                border: none;
+                border-radius: 3px;
+                color: #fff;
+                cursor: pointer;
+            }
+            
+            .search-container button:hover {
+                background-color: #8c8a80; 
+            }
+        
+    
+            main {
+                margin-left: 220px; 
+                padding: 20px;
+                max-width: 1200px;
+                margin: auto;
+            }
+    
+        .category-buttons {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+        }
+    
+        .category-button {
+            position: relative;
+            margin: 0 10px;
+            padding: 10px 20px;
+            border: 2px solid #a79e8f;
+            border-radius: 5px;
+            background: transparent;
+            color: #a79e8f;
+            font-size: 1em;
+            cursor: pointer;
+            font-family: 'Playfair Display', serif;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none;
+            overflow: hidden;
+            z-index: 1;
+            transition: color 0.6s, transform 0.6s;
+        }
+    
+        .category-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #a79e8f;
+            transition: transform 0.9s;
+            z-index: 0;
+        }
+    
+        .category-button:hover::before {
+            transform: translateX(100%);
+        }
+    
+        .category-button:hover {
+            color: white;
+        }
+    
+        .category-button:focus {
+            outline: none;
+        }
+    
+    
+    .clothing-gallery {
+        display: flex;
+        flex-wrap: wrap; /* Allows items to wrap into multiple rows */
+        justify-content: center; /* Centers the items */
+        gap: 16px; /* Adds space between the items */
+        padding: 16px; /* Adds some padding around the gallery */
+        
+    }
+    
+    .clothing-item {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.2s;
+        width: calc(33.33% - 32px); /* Three items per row minus the gap */
+    }
+    
+    .clothing-item:hover {
+        transform: scale(1.05);
+    }
+    
+    .image-container {
+        position: relative;
+        height: 420px; /* Set a fixed height for the image container */
+        overflow: hidden;
+    }
+    
+    .main-image, .hover-image {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: opacity 0.5s ease;
+    }
+    
+    .hover-image {
+        opacity: 0; /* Hide the hover image by default */
+    }
+    
+    .image-container:hover .main-image {
+        opacity: 0; /* Fade out main image */
+    }
+    
+    .image-container:hover .hover-image {
+        opacity: 1; /* Fade in hover image */
+    }
+    
+    h3, p {
+        padding: 10px 16px;
+        text-align: center; /* Center align the text */
+    }
+    
+    .button-container {
+        display: flex;
+        justify-content: center; /* Center align the buttons */
+        gap: 8px; /* Space between buttons */
+        padding: 10px 0; /* Padding above and below buttons */
+    }
+    
+    button {
+        background-color: #a79e8f; /* Button background color */
+        color: white; /* Button text color */
+        border: none; /* Remove borders */
+        border-radius: 5px; /* Rounded corners */
+        padding: 10px 20px; /* Padding inside the button */
+        cursor: pointer; /* Pointer cursor on hover */
+        transition: background-color 0.3s; /* Smooth transition */
+    }
+    
+    button:hover {
+        background-color: #504b44; /* Darker shade on hover */
+    }
+    .clothing-item h3, 
+    .clothing-item p {
+        color: black; /* Sets the color of the clothing name and price to black */
+    }
+    </style>
+    
+    <body>
+        <header>
+            <div class="logo">
+                <h1>SUBURB THREAD</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#store">Store</a></li>
+                    <li><a href="services.html">services</a></li> 
+                    <li><a href="blog.html">Blog</a></li> 
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="search-container">
+                <input type="text" placeholder="Search...">
+                <button type="submit">Search</button>
+            </div>
+    
+        <script>
+            document.querySelector('a[href="#login"]').addEventListener('click', function(e) {
+                e.preventDefault(); 
+                document.getElementById('loginModal').style.display = 'block';
+            });
+        
+            document.querySelector('a[href="#signup"]').addEventListener('click', function(e) {
+                e.preventDefault(); 
+                document.getElementById('signupModal').style.display = 'block';
+            });
+        
+            function closeModal(modalId) {
+                document.getElementById(modalId).style.display = 'none';
+            }
+     
+            window.onclick = function(event) {
+                if (event.target.classList.contains('modal')) {
+                    closeModal(event.target.id);
+                }
+            };
+        </script>
+    
+    <main>
+        <div class="category-buttons">
+            <a href="HOMEPAGE.HTML" class="category-button">home</a>
+        </div>
+    
+        <div class="clothing-gallery">
+            <div class="clothing-item">
+                <div class="image-container">
+                    <img src="https://y2kdream.com/cdn/shop/files/Star-Embroidered-Y2K-Baggy-Straight-Leg-Washed-Jeans-2.webp?v=1723618336&width=600" alt="Clothing Image 1" class="main-image">
+                    <img src="https://y2kdream.com/cdn/shop/files/Star-Embroidered-Y2K-Baggy-Straight-Leg-Washed-Jeans.webp?v=1723618331&width=600" alt="Clothing Image 1 Hover" class="hover-image">
+                </div>
+                <h3>Star Embroidered Y2K Baggy Straight Leg Washed Jeans</h3>
+                <p>₱2,400</p>
+                <label for="size4">Select Size:</label>
+    <select id="size4">
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+    </select>
+                <div class="button-container">
+                    <button>Buy</button>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+    
+            <div class="clothing-item">
+                <div class="image-container">
+                    <img src="https://y2kdream.com/cdn/shop/files/Y2K-Embroidered-Baggy-Jeans-2.webp?v=1723621933&width=600" alt="Clothing Image 2" class="main-image">
+                    <img src="https://y2kdream.com/cdn/shop/files/Y2K-Embroidered-Baggy-Jeans-3.webp?v=1723621938&width=600" alt="Clothing Image 2 Hover" class="hover-image">
+                </div>
+                <h3>Y2K Embroidered Baggy Jeans</h3>
+                <p>₱2,400</p>
+                <label for="size4">Select Size:</label>
+    <select id="size4">
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+    </select>
+                <div class="button-container">
+                    <button>Buy</button>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+    
+            <div class="clothing-item">
+                <div class="image-container">
+                    <img src="https://y2kdream.com/cdn/shop/files/Y2K-Baggy-Washed-Straight-Leg-Jeans-4.webp?v=1708698767&width=600" alt="Clothing Image 3" class="main-image">
+                    <img src="https://y2kdream.com/cdn/shop/files/Y2K-Baggy-Washed-Straight-Leg-Jeans-2.webp?v=1708698756&width=600" alt="Clothing Image 3 Hover" class="hover-image">
+                </div>
+                <h3>Y2K Baggy Washed Straight Leg Jeans</h3>
+                <p>₱2,400</p>
+                <label for="size4">Select Size:</label>
+    <select id="size4">
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+    </select>
+                <div class="button-container">
+                    <button>Buy</button>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+    
+            <div class="clothing-item">
+                <div class="image-container">
+                    <img src="https://y2kdream.com/cdn/shop/files/Y2k-Skeleton-Hands-Graphic-Baggy-Jeans-7.webp?v=1721065193&width=600" alt="Clothing Image 4" class="main-image">
+                    <img src="https://y2kdream.com/cdn/shop/files/Y2k-Skeleton-Hands-Graphic-Baggy-Jeans-2.webp?v=1721065171&width=600" alt="Clothing Image 4 Hover" class="hover-image">
+                </div>
+                <h3>Y2k Skeleton Hands Graphic Baggy Jeans</h3>
+                <p>₱2,400</p>
+                <label for="size4">Select Size:</label>
+    <select id="size4">
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+    </select>
+                <div class="button-container">
+                    <button>Buy</button>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+    
+            <div class="clothing-item">
+                <div class="image-container">
+                    <img src="https://y2kdream.com/cdn/shop/files/Y2K-Essential-Black-Baggy-Jeans-3.webp?v=1721224839&width=600" alt="Clothing Image 5" class="main-image">
+                    <img src="https://y2kdream.com/cdn/shop/files/Y2K-Essential-Black-Baggy-Jeans-5.webp?v=1721224849&width=600" alt="Clothing Image 5 Hover" class="hover-image">
+                </div>
+                <h3>Y2K Essential Black Baggy Jeans</h3>
+                <p>₱2,400</p>
+                <label for="size4">Select Size:</label>
+    <select id="size4">
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+    </select>
+                <div class="button-container">
+                    <button>Buy</button>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+    
+            <div class="clothing-item">
+                <div class="image-container">
+                    <img src="https://y2kdream.com/cdn/shop/files/Y2K-Distressed-Low-Waist-Print-Baggy-Jeans.webp?v=1721224773&width=600" alt="Clothing Image 6" class="main-image">
+                    <img src="https://y2kdream.com/cdn/shop/files/Y2K-Distressed-Low-Waist-Print-Baggy-Jeans-2.webp?v=1721224778&width=600" alt="Clothing Image 6 Hover" class="hover-image">
+                </div>
+                <h3>Y2K Distressed Low Waist Print Baggy Jeans</h3>
+                <p>₱2,400</p>
+                <label for="size4">Select Size:</label>
+    <select id="size4">
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+    </select>
+                <div class="button-container">
+                    <button>Buy</button>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <script src="script.js"></script>
+
+        
+
+    </body>
+</html>

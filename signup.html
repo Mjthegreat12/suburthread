@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGN UP</title>
+</head>
+<style>
+    header {
+        background: linear-gradient(135deg, #a79e8f, #231e1a);
+        color: #fff;
+        padding: 20px 0;
+        text-align: center;
+        position: relative; 
+    }
+    
+    .logo h1 {
+        margin: 0;
+        font-size: 2.5em;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+    
+    nav ul {
+        list-style: none;
+        padding: 0;
+        display: inline-block; 
+    }
+    
+    nav ul li {
+        display: inline; 
+        margin: 0 30px; 
+    }
+    
+    nav ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        position: relative;
+        transition: color 0.3s, transform 0.3s;
+    }
+    
+    nav ul li a:hover {
+        color: #a79e8f; 
+        transform: scale(1.1); 
+    }
+    
+    .search-container {
+        margin-top: 10px;
+    }
+    
+    .search-container input[type="text"] {
+        padding: 10px;
+        width: 200px;
+        border: none;
+        border-radius: 3px;
+    }
+    
+    .search-container button {
+        padding: 10px;
+        background-color: #a79e8f;
+        border: none;
+        border-radius: 3px;
+        color: #fff;
+        cursor: pointer;
+    }
+    
+    .search-container button:hover {
+        background-color: #8c8a80; 
+    }
+    
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+    
+    body {
+        background-color: #ffffff;
+    }
+    
+    .container {
+        width: 100%;
+        max-width: 400px;
+        margin: 20px auto;
+    }
+    
+    .signup-card {
+        background-color: #5a4c48;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+    
+    h1 {
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: #ffffff;
+    }
+    
+    .input-group {
+        margin-bottom: 15px;
+        text-align: left;
+    }
+    
+    label {
+        display: block;
+        margin-bottom: 5px;
+        color: #ffffff;
+    }
+    
+    input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ffffff;
+        border-radius: 5px;
+        background-color: #D1D0CE;
+        color: #000000;
+    }
+    
+    input:focus {
+        border-color: #000000;
+        outline: none;
+    }
+    
+    button[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background-color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        color: #231e1a;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    
+    button[type="submit"]:hover {
+        background-color: #a79e8f;
+    }
+    
+    .footer {
+        margin-top: 15px;
+        font-size: 14px;
+    }
+    
+    .footer a {
+        color: #ffffff;
+        text-decoration: none;
+    }
+    
+    .footer a:hover {
+        text-decoration: underline;
+    }
+    
+    .input-feedback {
+        font-size: 12px;
+        color: #ff4c4c; 
+        margin-top: 5px;
+        display: none; 
+    }
+    .category-buttons {
+        margin: 20px 0; 
+        display: flex; 
+        justify-content: center; 
+    }
+    
+    .category-button {
+        position: relative; 
+        margin: 0 10px; 
+        padding: 10px 20px;
+        border: 2px solid #a79e8f; 
+        border-radius: 5px; 
+        background: transparent; 
+        color: #a79e8f; 
+        font-size: 1em;
+        cursor: pointer;
+        font-family: 'Playfair Display', serif; 
+        font-weight: bold; 
+        text-transform: uppercase; 
+        text-decoration: none; 
+        overflow: hidden; 
+        z-index: 1; 
+        transition: color 0.6s, transform 0.6s; 
+    }
+    
+    .category-button::before {
+        content: ''; 
+        position: absolute; 
+        top: 0;
+        left: -100%; 
+        width: 100%; 
+        height: 100%; 
+        background: #a79e8f; 
+        transition: transform 0.9s; 
+        z-index: 0; 
+    }
+    
+    .category-button:hover::before {
+        transform: translateX(100%); 
+    }
+    
+    .category-button:hover {
+        color: white; 
+    }
+    
+    .category-button:focus {
+        outline: none; 
+    }
+    
+    footer {
+            text-align: center;
+            padding: 50px 0; 
+            background: linear-gradient(135deg, #a79e8f, #231e1a);
+            color: #ffffff;
+            width: 100%; 
+            position: relative; 
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $('#signup-form').on('submit', function (event) {
+            event.preventDefault(); 
+    
+            $('.input-feedback').hide().text('');
+    
+            const username = $('#username').val().trim();
+            const email = $('#email').val().trim();
+            const password = $('#password').val().trim();
+    
+            let valid = true;
+    
+            if (username.length < 3) {
+                $('#username-feedback').text('Username must be at least 3 characters.').show();
+                valid = false;
+            }
+    
+            if (!validateEmail(email)) {
+                $('#email-feedback').text('Please enter a valid email address.').show();
+                valid = false;
+            }
+    
+            if (password.length < 6) {
+                $('#password-feedback').text('Password must be at least 6 characters.').show();
+                valid = false;
+            }
+    
+            if (valid) {
+                alert('Signup successful!');
+            }
+        });
+    
+        function validateEmail(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        }
+    
+        $('#username').on('input', function () {
+            const inputVal = $(this).val();
+            if (inputVal.length < 3) {
+                $('#username-feedback').text('Enter at least 3 characters').show();
+            } else {
+                $('#username-feedback').hide();
+            }
+        });
+    
+        $('#email').on('input', function () {
+            $('#email-feedback').hide();  
+        });
+    
+        $('#password').on('input', function () {
+            const inputVal = $(this).val();
+            if (inputVal.length < 6) {
+                $('#password-feedback').text('Enter at least 6 characters').show();
+            } else {
+                $('#password-feedback').hide();
+            }
+        });
+    });
+    </script>
+    
+    <body>
+        <header>
+            <div class="logo">
+                <h1>SUBURB THREAD</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#store">Store</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="blog.html">Blog</a></li> 
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="search-container">
+                <input type="text" placeholder="Search...">
+                <button type="button">Search</button>
+            </div>
+        </header>
+        
+        <div class="container">
+            <div class="signup-card">
+                <h1>Create Account</h1>
+                <form id="signup-form" action="#" method="post">
+                    <div class="input-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" required>
+                        <span class="input-feedback" id="username-feedback"></span>
+                    </div>
+                    <div class="input-group">
+                        <label for="email">Email</label>
+                        <input type="text" id="email" name="email" required>
+                        <span class="input-feedback" id="email-feedback"></span>
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                        <span class="input-feedback" id="password-feedback"></span>
+                    </div>
+                    <button type="submit">Sign Up</button>
+                    <div class="footer">
+                        <span>Already have an account? </span><a href="login.html">Login here</a>
+                    </div>
+                </form>
+            </div>
+        
+            <div class="category-buttons">
+                <a href="HOMEPAGE.html" class="category-button">Home</a>
+            </div>
+        </div>
+    
+        <script src="script.js"></script>
+
+        <footer>
+            <p>© 2024 Suburb Thread Store. All rights reserved.</p>
+        </footer>
+    </body>
+</html>

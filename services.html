@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services</title>
+</head>
+<style>
+    body {
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #D1D0CE;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #a79e8f, #231e1a);
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            position: relative; 
+        }
+        
+        .logo h1 {
+            margin: 0;
+            font-size: 2.5em;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: inline-block; 
+        }
+        
+        nav ul li {
+            display: inline; 
+            margin: 0 30px; 
+        }
+        
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            position: relative;
+            transition: color 0.3s, transform 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #a79e8f; 
+            transform: scale(1.1); 
+        }
+        
+        .search-container {
+            margin-top: 10px;
+        }
+        
+        .search-container input[type="text"] {
+            padding: 10px;
+            width: 200px;
+            border: none;
+            border-radius: 3px;
+        }
+        
+        .search-container button {
+            padding: 10px;
+            background-color: #a79e8f;
+            border: none;
+            border-radius: 3px;
+            color: #fff;
+            cursor: pointer;
+        }
+        
+        .search-container button:hover {
+            background-color: #8c8a80; 
+        }
+ 
+        main {
+            margin-left: 220px; 
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .category-buttons {
+            margin: 20px 0; 
+            display: flex; 
+            justify-content: center; 
+        }
+        
+        .category-button {
+            position: relative; 
+            margin: 0 10px; 
+            padding: 10px 20px;
+            border: 2px solid #a79e8f; 
+            border-radius: 5px; 
+            background: transparent; 
+            color: #a79e8f; 
+            font-size: 1em;
+            cursor: pointer;
+            font-family: 'Playfair Display', serif; 
+            font-weight: bold; 
+            text-transform: uppercase; 
+            text-decoration: none; 
+            overflow: hidden; 
+            z-index: 1; 
+            transition: color 0.6s, transform 0.6s; 
+        }
+        
+        .category-button::before {
+            content: ''; 
+            position: absolute; 
+            top: 0;
+            left: -100%; 
+            width: 100%; 
+            height: 100%; 
+            background: #a79e8f; 
+            transition: transform 0.9s; 
+            z-index: 0; 
+        }
+        
+        .category-button:hover::before {
+            transform: translateX(100%); 
+        }
+        
+        .category-button:hover {
+            color: white; 
+        }
+        
+        .category-button:focus {
+            outline: none; 
+        }
+
+        section {
+            margin: 20px 0;
+            padding: 20px;
+            background: #ffffff; 
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .auth-links {
+    position: absolute;
+    right: 20px; 
+    top: 20px; 
+    font-size: 1em; 
+}
+
+.auth-links a {
+    color: #fff; 
+    text-decoration: none; 
+    margin: 0 10px; 
+    transition: color 0.3s ease, transform 0.3s ease; 
+}
+
+.auth-links a:hover {
+    color: #a79e8f; 
+    transform: scale(1.1); 
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3); 
+}
+
+header {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0; 
+    }
+    to {
+        opacity: 1; 
+    }
+}
+
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; 
+    max-width: 500px; 
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+section h2 {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 2em;
+    color: #231e1a; 
+}
+
+.service-item {
+    margin: 15px 0;
+    padding: 15px;
+    background-color: #f9f9f9; 
+    border: 1px solid #a79e8f; 
+    border-radius: 6px; 
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); 
+}
+
+.service-item h3 {
+    margin: 0 0 10px; 
+    color: #231e1a; 
+}
+
+.service-item p {
+    margin: 0;
+    color: #555; 
+}
+
+footer {
+            text-align: center;
+            padding: 50px 0; 
+            background: linear-gradient(135deg, #a79e8f, #231e1a);
+            color: #ffffff;
+            width: 100%; 
+            position: relative; 
+        }
+</style>
+<body>
+   
+    <header>
+        <div class="logo">
+            <h1>SUBURB THREAD</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#store">Store</a></li>
+                <li><a href="blog.html">Blog</a></li> 
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="search-container">
+            <input type="text" placeholder="Search...">
+            <button type="submit">Search</button>
+        </div>
+        <div class="auth-links">
+            <a href="#login">Login</a> | 
+            <a href="#signup">Sign Up</a>
+        </div>
+    </header>
+
+    <div class="auth-links">
+        <a href="login.html">Login</a> | 
+        <a href="signup.html">Sign Up</a>
+    </div>
+
+    <main>
+        <div class="category-buttons">
+            <a href="HOMEPAGE.HTML" class="category-button">home</a>
+        </div>
+
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Login</h2>
+            <form id="login-form">
+                <input type="text" placeholder="Username" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+    
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('signupModal')">&times;</span>
+            <h2>Sign Up</h2>
+            <form id="signup-form">
+                <input type="text" placeholder="Username" required>
+                <input type="email" placeholder="Email Address" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <section id="services">
+        <h2>Our Services</h2>
+        <div class="service-item">
+            <h3>Custom Tailoring</h3>
+            <p>Our custom tailoring service offers personalized fittings and bespoke designs that bring your unique vision to life. Whether it's a tailored suit for a special occasion or a casual outfit that perfectly matches your style, our skilled artisans pay attention to every detail to ensure a flawless fit and exceptional quality.</p>
+        </div>
+        <div class="service-item">
+            <h3>Alterations and Repairs</h3>
+            <p>We provide professional alteration and repair services for all your garments. From resizing to mending, our experienced team is dedicated to extending the life of your clothing while maintaining the original style and quality. No job is too big or too small, and we guarantee satisfaction in every stitch.</p>
+        </div>
+        <div class="service-item">
+            <h3>Fabric Sourcing</h3>
+            <p>Discover the finest fabrics with our fabric sourcing service. We work with various suppliers to offer a wide range of high-quality materials tailored to your needs. Whether you’re seeking luxurious silk, durable cotton, or unique prints, our expertise will guide you in selecting the perfect fabric for your projects.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 Suburb Thread Store. All rights reserved.</p>
+    </footer>
+
+</body> 
+</html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+</head>
+<style>
+        body {
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #D1D0CE;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #a79e8f, #231e1a);
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            position: relative; 
+            animation: fadeIn 0.5s ease;
+        }
+
+        .logo h1 {
+            margin: 0;
+            font-size: 2.5em;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: inline-block; 
+        }
+        
+        nav ul li {
+            display: inline; 
+            margin: 0 30px; 
+        }
+        
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            position: relative;
+            transition: color 0.3s, transform 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #a79e8f; 
+            transform: scale(1.1); 
+        }
+        
+        .search-container {
+            margin-top: 10px;
+        }
+        
+        .search-container input[type="text"] {
+            padding: 10px;
+            width: 200px;
+            border: none;
+            border-radius: 3px;
+        }
+        
+        .search-container button {
+            padding: 10px;
+            background-color: #a79e8f;
+            border: none;
+            border-radius: 3px;
+            color: #fff;
+            cursor: pointer;
+        }
+        
+        .search-container button:hover {
+            background-color: #8c8a80; 
+        }
+ 
+        main {
+            margin-left: 220px; 
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .category-buttons {
+            margin: 20px 0; 
+            display: flex; 
+            justify-content: center; 
+        }
+        
+        .category-button {
+            position: relative; 
+            margin: 0 10px; 
+            padding: 10px 20px;
+            border: 2px solid #a79e8f; 
+            border-radius: 5px; 
+            background: transparent; 
+            color: #a79e8f; 
+            font-size: 1em;
+            cursor: pointer;
+            font-family: 'Playfair Display', serif; 
+            font-weight: bold; 
+            text-transform: uppercase; 
+            text-decoration: none; 
+            overflow: hidden; 
+            z-index: 1; 
+            transition: color 0.6s, transform 0.6s; 
+        }
+        
+        .category-button::before {
+            content: ''; 
+            position: absolute; 
+            top: 0;
+            left: -100%; 
+            width: 100%; 
+            height: 100%; 
+            background: #a79e8f; 
+            transition: transform 0.9s; 
+            z-index: 0; 
+        }
+        
+        .category-button:hover::before {
+            transform: translateX(100%); 
+        }
+        
+        .category-button:hover {
+            color: white; 
+        }
+        
+        .category-button:focus {
+            outline: none; 
+        }
+        
+        .auth-links {
+            position: absolute;
+            right: 20px; 
+            top: 20px; 
+            font-size: 1em; 
+        }
+
+        .auth-links a {
+            color: #fff; 
+            text-decoration: none; 
+            margin: 0 10px; 
+            transition: color 0.3s ease, transform 0.3s ease; 
+        }
+
+        .auth-links a:hover {
+            color: #a79e8f; 
+            transform: scale(1.1); 
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3); 
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0; 
+            }
+            to {
+                opacity: 1; 
+            }
+        }
+
+        .video-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        iframe {
+            border: 2px solid #a79e8f;
+            border-radius: 5px;
+        }
+
+        .video-short{
+            display: flex; 
+            gap: 20px; 
+        }
+        .youtube-short {
+            width: 335px; 
+            height: 550px; 
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px 0; 
+            background: linear-gradient(135deg, #a79e8f, #231e1a);
+            color: #ffffff;
+            width: 100%; 
+            position: relative; 
+        }
+        .blog-section {
+        margin-top: 30px; 
+        padding: 20px; 
+        background-color: #EDEBEB; 
+        border-radius: 5px; 
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+    }
+
+    .blog-section h2 {
+        text-align: center;
+        font-size: 2em; 
+        color: #231e1a; 
+        margin-bottom: 20px; 
+    }
+
+    .blog-post {
+        margin: 15px 0; 
+        padding: 15px; 
+        border: 1px solid #a79e8f; 
+        border-radius: 5px; 
+        background-color: white; 
+    }
+
+    .blog-post h3 {
+        font-size: 1.5em; 
+        margin: 0; 
+    }
+
+    .blog-post p {
+        font-size: 1em; 
+        color: #555; 
+    }
+
+    .read-more-link {
+    display: inline-block; 
+    margin-top: 10px; 
+    padding: 10px 15px; 
+    background-color: #a79e8f; 
+    color: white; 
+    border-radius: 5px; 
+    text-decoration: none; 
+    transition: background-color 0.3s ease, transform 0.3s ease; 
+}
+
+.read-more-link:hover {
+    background-color: #8c8a80;  
+    transform: translateY(-2px); 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>SUBURB THREAD</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#store">Store</a></li>
+                <li><a href="services.html">Services</a></li> 
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="search-container">
+            <input type="text" placeholder="Search...">
+            <button type="submit">Search</button>
+        </div>
+        <div class="auth-links">
+            <a href="#login">Login</a> | 
+            <a href="#signup">Sign Up</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="category-buttons">
+            <a href="HOMEPAGE.html" class="category-button">Home</a>
+        </div>
+        <div class="video-container">
+            <iframe width="800" height="450" src="https://www.youtube.com/embed/GjCNoZF9HxQ?autoplay=1&mute=1&loop=1&playlist=GjCNoZF9HxQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </main>
+
+    <div class="blog-section">
+        <h2>Welcome to SUBURB THREAD! </h2>
+        <div class="blog-post">
+            <h3>Suburb Thread</h3>
+            <p>Dive into our latest collections where style meets comfort.</p>
+            <a href="#" class="read-more-link">Read More</a>
+            <div class="more-text" style="display: none;">
+                <p>Dive into our latest collections where style meets comfort. 
+                    From chic everyday wear to statement pieces for special occasions, 
+                    we've curated a range of fashion that empowers you to express your unique personality. 
+                    Browse our stunning clothing line, enjoy seamless shopping, and experience the artistry of fashion designed just for you. 
+                    Join us on this stylish journey!
+                </p>
+            </div>
+        </div>
+        <div class="blog-post">
+            <h3>Embracing Sustainable Fashion: How Your Wardrobe Can Make a Difference</h3>
+            <p>As consumers become increasingly aware of the impact of fast fashion on our planet, 
+                the shift towards sustainable fashion is gaining momentum. 
+                Sustainable fashion is not just about buying eco-friendly products; it encompasses a lifestyle that prioritizes ethical 
+                practices, environmental responsibility, and mindful consumption.
+                 Here's how you can embrace sustainable fashion and make a positive impact with your wardrobe choices.</p>
+            <a href="#" class="read-more-link">Read More</a>
+            <div class="more-text" style="display: none;">
+                <p>1. Understanding Sustainable Fashion
+                    Sustainable fashion refers to clothing that is designed, manufactured, and sold in an environmentally and ethically responsible manner. This includes using eco-friendly materials, fair labor practices, and reducing waste throughout the production process.
+                    <br>
+                    <br>
+                    2. Choose Quality Over Quantity
+                    One of the key principles of sustainable fashion is investing in high-quality garments rather than fast fashion items. High-quality clothes are more durable and timeless, saving you money in the long run while reducing the amount of waste produced by poorly made garments. Look for brands that prioritize craftsmanship and sustainable materials.
+                    <br>
+                    <br>
+                    3. Opt for Ethical Brands
+                    Support brands that are committed to ethical practices. Research companies that prioritize fair wages, safe working conditions, and environmentally friendly production methods. Many brands now transparently share their sustainability efforts, making it easier for consumers to make informed choices.
+                    <br>
+                    <br>
+                    4. Explore Secondhand Shopping
+                    Thrifting and buying secondhand clothes is a fantastic way to practice sustainable fashion. Not only do you give pre-loved clothing a second life, but you also reduce the demand for new production. Online platforms and local thrift stores are treasure troves of unique finds that are often more affordable than new pieces.
+                    <br>
+                    <br>
+                    5. Mindful Wardrobe Choices
+                    Before making a purchase, ask yourself if the item fits your wardrobe needs and if you will wear it frequently. Avoid impulse buys; instead, create a capsule wardrobe with versatile pieces that can be mixed and matched. This approach will help you embrace minimalism and ensure that everything in your closet is treasured.
+                    <br>
+                    <br>
+                    6. Care for Your Clothes
+                    Proper care extends the lifespan of your clothing. Follow washing instructions carefully, and consider air-drying items instead of using a dryer. Repair damaged pieces instead of discarding them, and learn basic sewing skills for quick fixes. A well-cared-for wardrobe is a sustainable wardrobe.
+                    <br>
+                    <br>
+                    7. Recycle and Upcycle
+                    When it's time to part with clothing, consider recycling or upcycling. Many brands offer take-back programs where you can return old clothes for recycling. Upcycling is also a creative way to transform old garments into something new—think DIY fashion projects!
+                    <br>
+                    <br>
+                    8. Spread Awareness
+                    Share your journey towards sustainable fashion with friends and family. Your enthusiasm can inspire others to make more conscious choices. Engage with online communities that promote sustainable practices, and participate in discussions about the importance of ethical fashion.</p>
+            </div>
+        </div>
+        <div class="blog-post">
+            <h3>The Art of Layering: Elevate Your Style for Every Season</h3>
+            <p>Layering is an essential technique in fashion that not only offers versatility but also allows for creative expression. As the seasons change, mastering the art of layering can help you transition your wardrobe seamlessly while keeping you comfortable and stylish. Here's a guide on how to layer effectively, no matter the season!</p>
+            <a href="#" class="read-more-link">Read More</a>
+            <div class="more-text" style="display: none;">
+                <p>1. Choose Your Base Layer Wisely
+                    Start with a well-fitted base layer that is comfortable and breathable. In colder months, opt for long-sleeved tees or thermal tops; in warmer weather, lightweight tanks or fitted t-shirts work best. Neutral colors and simple patterns provide a versatile foundation for your layered looks.
+                    <br>
+                    <br>
+                    2. Incorporate Textured Middle Layers
+                    The middle layer is your opportunity to add texture and dimension to your outfit. Cardigans, sweaters, and light jackets are excellent options. Play with different materials like knits, denim, or chambray to create depth in your look. Don't shy away from mixing patterns—stripes with florals or plaids can add visual interest!
+                    <br>
+                    <br>
+                    3. Master the Art of Outerwear
+                    Outerwear not only protects you from the elements but can also make a bold style statement. Choose a stylish coat, trench, or denim jacket that complements your outfit. Look for versatile options that can be dressed up or down, and don't forget to pay attention to fit—an oversized silhouette can add an edgy vibe while a tailored coat offers sophistication.
+                    <br>
+                    <br>
+                    4. Accessorize Strategically
+                    Accessories play a crucial role in layering. Scarves, hats, and belts can enhance your outfit while adding functionality. For colder weather, a chunky knit scarf can provide warmth, while a statement belt can cinch your waist and elevate your look. Experiment with different accessories to find combinations that reflect your personal style.
+                    <br>
+                    <br>
+                    5. Play with Lengths and Proportions
+                    Layering is about balance. When wearing multiple layers, consider varying lengths and proportions to avoid looking bulky. Pair a longer shirt with a cropped jacket, or layer a tunic over a fitted pair of leggings. Tall boots can elongate the legs, while ankle boots work well with shorter styles. Experiment with proportions to find flattering silhouettes.
+                    <br>
+                    <br>
+                    6. Mix and Match Colors
+                    Color coordination is key to successful layering. Stick to a cohesive color palette, incorporating different shades and tones for a harmonious look. Neutrals can easily be layered with bolder colors, while monochromatic outfits can create an effortlessly chic vibe. Don’t be afraid to use color to express your personality!
+                    <br>
+                    <br>
+                    7. Seasonal Layering Tips
+                    <br>
+                    Spring: Lightweight layers are essential. A denim jacket over a floral dress keeps you warm without sacrificing style.
+                    <br>
+                    Summer: Summer layering can be tricky. Use lightweight kimonos or open cardigans over sleeveless tops, and consider breathable fabrics for comfort.
+                    <br>
+                    Autumn: Embrace cozy sweaters, scarves, and boots. A stylish trench or an oversized cardigan can be your go-to outer layer.
+                    <br>
+                    Winter: Invest in quality base layers, such as thermal tops, and don't forget chunky sweaters for added warmth. Layering tights under skirts can keep you warm without hindering style.
+                    <br>
+                    <br>
+                    8. Experiment and Have Fun
+                    The beauty of layering lies in creativity. There are no strict rules—experiment with different combinations, textures, and styles to discover what makes you feel confident and comfortable. Take inspiration from fashion icons or try out new trends that catch your eye.
+                    <br>
+                    <br>
+                    <br>
+                    THANK YOU FOR YOUR SUPPORT! 
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.read-more-link').click(function(event) {
+            event.preventDefault(); 
+            $(this).next('.more-text').slideToggle(300); 
+            $(this).text($(this).text() == 'Read More' ? 'Read Less' : 'Read More'); 
+        });
+    });
+</script>
+
+<div class="video-short">
+    <iframe class="youtube-short" src="https://www.youtube.com/embed/YBIS5NTtkNs?autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe class="youtube-short" src="https://www.youtube.com/embed/AmmEplALFwY?autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe class="youtube-short" src="https://www.youtube.com/embed/IFPkHOG7s_0?autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe class="youtube-short" src="https://www.youtube.com/embed/T4zZWKv7ANQ?autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+
+    <footer>
+        <p>© 2024 Suburb Thread Store. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

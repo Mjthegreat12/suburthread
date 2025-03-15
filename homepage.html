@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suburban Thread</title>
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <h1>SUBURB THREAD</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#store">Store</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="auth-links">
+            <a href="#login">Login</a> |
+            <a href="#signup">Sign Up</a>
+        </div>
+    </header>
+
+    <main>
+    </main>
+
+    <script>
+        let lastScrollTop = 0;
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', function () {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > lastScrollTop) {
+                if (scrollTop > 100) {
+                    header.classList.add('show');
+                }
+            } else {
+                if (scrollTop <= 100) {
+                    header.classList.remove('show');
+                }
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
+        });
+    </script>
+
+    <div class="auth-links">
+        <a href="login.html">Login</a> | 
+        <a href="signup.html">Sign Up</a>
+    </div>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Login</h2>
+            <form id="login-form">
+                <input type="text" placeholder="Username" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+    
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('signupModal')">&times;</span>
+            <h2>Sign Up</h2>
+            <form id="signup-form">
+                <input type="text" placeholder="Username" required>
+                <input type="email" placeholder="Email Address" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector('a[href="#login"]').addEventListener('click', function(e) {
+            e.preventDefault(); 
+            document.getElementById('loginModal').style.display = 'block';
+        });
+    
+        document.querySelector('a[href="#signup"]').addEventListener('click', function(e) {
+            e.preventDefault(); 
+            document.getElementById('signupModal').style.display = 'block';
+        });
+    
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                closeModal(event.target.id);
+            }
+        };
+    </script>
+
+
+    <main>
+        <div class="category-buttons">
+            <a href="menswear.html" class="category-button">Men</a>
+            <a href="women.html" class="category-button">Women</a>
+        </div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $(".search-container button[type='submit']").on("click", function() {
+            var searchTerm = $(".search-container input[type='text']").val();
+            alert("Searching for: " + searchTerm);
+        });
+
+        $(".product button").on("click", function() {
+            var productName = $(this).closest(".product").find("h3").text();
+            if ($(this).text() === "Buy Now") {
+                alert("You are buying: " + productName);
+            } else {
+                alert("You added to cart: " + productName);
+            }
+        });
+    });
+</script>
+
+<div class="header-container">
+    <div class="slider">
+        <img src="https://y2kdream.com/cdn/shop/files/y2kdreamclothing.jpg?v=1702393548&width=1400" alt="Header Image 1" class="header-image">
+        <img src="https://y2kdream.com/cdn/shop/files/y2kdreambanner.jpg?v=1702392767&width=1400" alt="Header Image 2" class="header-image">
+    </div>
+    <div class="header-text">
+        <h1>SUBURB THREAD</h1>
+    </div>
+</div>
+
+<script>
+let currentIndex = 0;
+const images = document.querySelectorAll('.header-image');
+const totalImages = images.length;
+
+function showNextImage() {
+
+    images[currentIndex].classList.remove('active');
+
+    currentIndex = (currentIndex + 1) % totalImages;
+
+    images[currentIndex].classList.add('active');
+}
+
+const interval = setInterval(showNextImage, 4000); 
+
+const headerContainer = document.querySelector('.header-container');
+
+headerContainer.addEventListener('mouseenter', () => {
+    clearInterval(interval); 
+});
+
+headerContainer.addEventListener('mouseleave', () => {
+    setInterval(showNextImage, 4000);
+});
+
+images[currentIndex].classList.add('active');
+</script>
+
+<section id="store">
+    <h2>Collections</h2>
+    <div class="product-carousel">
+        <button class="prev" onclick="moveSlide(-1)">❮ Back</button>
+        <div class="carousel-container">
+            <div class="carousel-slides">
+                <div class="product">
+                    <div class="image-container">
+                        <a href="sunglasses.html">
+                            <img src="https://y2kdream.com/cdn/shop/collections/Y2K-Essential-Cat-Eye-Sunglasses.jpg?v=1723631326&width=600" alt="Product 1">
+                            <h3 class="product-title">Y2K Sunglasses</h3>
+                        </a>
+                    </div>
+                </div>
+                <div class="product">
+                    <div class="image-container">
+                        <a href="baggy.html">
+                            <img src="https://y2kdream.com/cdn/shop/collections/y2k-baggy-jeans.jpg?v=1723631358&width=500" alt="Product 2">
+                            <h3 class="product-title">Y2K Baggy Jeans</h3>
+                        </a>
+                    </div>
+                </div>
+                <div class="product">
+                    <div class="image-container">
+                        <a href="jorts.html">
+                            <img src="https://y2kdream.com/cdn/shop/collections/Screenshot_2024-06-26_at_11.11.23.png?v=1721661717&width=500" alt="Product 3">
+                            <h3 class="product-title">Y2K Jorts</h3>
+                        </a>
+                    </div>
+                </div>
+                <div class="product">
+                    <div class="image-container">
+                        <a href="hoodies.html">
+                            <img src="https://y2kdream.com/cdn/shop/collections/y2k-hoodies.jpg?v=1708703982&width=500" alt="Product 5">
+                            <h3 class="product-title">Y2K Hoodies</h3>
+                        </a>
+                    </div>
+                </div>
+                <div class="product">
+                    <div class="image-container">
+                        <a href="jackets.html">
+                            <img src="https://y2kdream.com/cdn/shop/collections/y2k-racing-jackets.jpg?v=1708703995&width=500" alt="Product 6">
+                            <h3 class="product-title">Y2K Racing Jackets</h3>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="next" onclick="moveSlide(1)">Next ❯</button>
+    </div>
+</section>
+
+
+<script>
+    let currentSlide = 0;
+    
+    const slides = document.querySelectorAll('.product'); 
+    const totalSlides = slides.length; 
+
+    function updateSlidePosition() {
+        const carouselSlides = document.querySelector('.carousel-slides');
+        const slideWidth = slides[currentSlide].getBoundingClientRect().width;
+
+        carouselSlides.style.transform = `translateX(-${currentSlide * (slideWidth + 20)}px)`; 
+    }
+
+    function moveSlide(direction) {
+        currentSlide += direction;
+        
+        if (currentSlide < 0) {
+            currentSlide = totalSlides - 1;
+        } else if (currentSlide >= totalSlides) {
+            currentSlide = 0; 
+        }
+        
+        updateSlidePosition();
+    }
+</script>
+</script>
+
+        <div class="video-short">
+            <iframe class="youtube-short" src="https://www.youtube.com/embed/YBIS5NTtkNs?autoplay=1&mute=1&loop=1&playlist=YBIS5NTtkNs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe class="youtube-short" src="https://www.youtube.com/embed/AmmEplALFwY?autoplay=1&mute=1&loop=1&playlist=AmmEplALFwY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe class="youtube-short" src="https://www.youtube.com/embed/IFPkHOG7s_0?autoplay=1&mute=1&loop=1&playlist=IFPkHOG7s_0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe class="youtube-short" src="https://www.youtube.com/embed/T4zZWKv7ANQ?autoplay=1&mute=1&loop=1&playlist=T4zZWKv7ANQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <section id="model">
+            <div class="slider">
+                <div class="slides">
+                    <img src="https://i.pinimg.com/736x/94/f3/5d/94f35da1fa321b1b2441908d88cfce77.jpg" alt="Image 1">
+                    <img src="https://i.pinimg.com/564x/ac/e7/ae/ace7ae7460f64a11e58de365c8c89a7b.jpg" alt="Image 2">
+                    <img src="https://i.pinimg.com/564x/bd/c0/4e/bdc04e68d52cbffb87add4457d6f6f16.jpg" alt="Image 3">
+                    <img src="https://i.pinimg.com/564x/6e/5d/b9/6e5db9abc9583e36485d00a86b035d3a.jpg" alt="Image 4">
+                    <img src="https://i.pinimg.com/564x/f3/a5/1b/f3a51bcee940bbb0517f4fd508d9d8a2.jpg" alt="Image 5">
+                    <img src="https://i.pinimg.com/564x/47/53/8c/47538c3182d77175d06422cae08e1131.jpg" alt="Image 6">
+
+                    <img src="https://i.pinimg.com/736x/94/f3/5d/94f35da1fa321b1b2441908d88cfce77.jpg" alt="Image 1 (Clone)">
+                    <img src="https://i.pinimg.com/564x/ac/e7/ae/ace7ae7460f64a11e58de365c8c89a7b.jpg" alt="Image 2 (Clone)">
+                    <img src="https://i.pinimg.com/564x/bd/c0/4e/bdc04e68d52cbffb87add4457d6f6f16.jpg" alt="Image 3 (Clone)">
+                    <img src="https://i.pinimg.com/564x/6e/5d/b9/6e5db9abc9583e36485d00a86b035d3a.jpg" alt="Image 4 (Clone)">
+                    <img src="https://i.pinimg.com/564x/f3/a5/1b/f3a51bcee940bbb0517f4fd508d9d8a2.jpg" alt="Image 5 (Clone)">
+                    <img src="https://i.pinimg.com/564x/47/53/8c/47538c3182d77175d06422cae08e1131.jpg" alt="Image 6 (Clone)">
+                </div>
+            </div>
+        </section>
+
+        <main>
+            <div class="video-container">
+                <iframe width="800" height="450" src="https://www.youtube.com/embed/GjCNoZF9HxQ?autoplay=1&mute=1&loop=1&playlist=GjCNoZF9HxQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </main>
+
+        <section id="model-duplicate">
+            <div class="slider">
+                <div class="slides">
+                    <img src="https://i.pinimg.com/564x/f3/a5/1b/f3a51bcee940bbb0517f4fd508d9d8a2.jpg" alt="Image 1">
+                    <img src="https://i.pinimg.com/564x/b1/5a/ea/b15aea223056465176a6a593e3f4a1f9.jpg" alt="Image 2">
+                    <img src="https://i.pinimg.com/564x/93/ac/97/93ac9714a8afbc51ac08ae2268d7e662.jpg" alt="Image 3">
+                    <img src="https://i.pinimg.com/736x/99/20/9f/99209fe5a9854b568baf403f33715974.jpg" alt="Image 4">
+                    <img src="https://i.pinimg.com/564x/f3/a5/1b/f3a51bcee940bbb0517f4fd508d9d8a2.jpg" alt="Image 5">
+                    <img src="https://i.pinimg.com/564x/f5/56/ca/f556cafdd98aab63b37c67383007237c.jpg" alt="Image 6">
+
+                    <img src="https://i.pinimg.com/564x/f3/a5/1b/f3a51bcee940bbb0517f4fd508d9d8a2.jpg" alt="Image 1 (Clone)">
+                    <img src="https://i.pinimg.com/564x/b1/5a/ea/b15aea223056465176a6a593e3f4a1f9.jpg" alt="Image 2 (clone)">
+                    <img src="https://i.pinimg.com/564x/93/ac/97/93ac9714a8afbc51ac08ae2268d7e662.jpg" alt="Image 3 (clone)">
+                    <img src="https://i.pinimg.com/736x/99/20/9f/99209fe5a9854b568baf403f33715974.jpg" alt="Image 4 (clone)">
+                    <img src="https://i.pinimg.com/564x/f3/a5/1b/f3a51bcee940bbb0517f4fd508d9d8a2.jpg" alt="Image 5 (clone)">
+                    <img src="https://i.pinimg.com/564x/f5/56/ca/f556cafdd98aab63b37c67383007237c.jpg" alt="Image 6 (clone)">
+                </div>
+            </div>
+        </section>
+        
+        <script>
+            const sliders = document.querySelectorAll('.slides'); 
+            const NumimagesToShow = 3; 
+            
+            sliders.forEach((slides) => {
+                const images = slides.querySelectorAll('img'); 
+                const totalImages = images.length; 
+                let currentIndex = 0;
+            
+                function showNextSlide() {
+                    currentIndex = (currentIndex + imagesToShow) % totalImages; 
+                        
+                    slides.style.transform = `translateX(-${(currentIndex / totalImages) * 100}%)`;
+                }
+
+                setInterval(showNextSlide, 3000);
+            });
+        </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const overlayAd = document.getElementById('overlayAd');
+        const closeAdButton = document.getElementById('closeAdButton');
+
+        overlayAd.style.display = 'flex'; 
+
+        closeAdButton.onclick = function() {
+            overlayAd.style.display = 'none'; 
+        };
+    });
+</script>
+
+<section id="about">
+    <h2>About Us!</h2>
+    <div class="about-content">
+        <h3>Welcome to Suburb Thread, where passion meets creativity.</h3>
+        <p>
+            Welcome to Suburb Thread. We are a group of dedicated students currently undertaking a school project focused on providing high-quality, stylish clothing that fosters self-expression and individuality.
+        </p>
+        <button id="see-more">See More</button>
+    </div>
+</section>
+
+<script>
+    let isMoreVisible = false;
+
+    document.getElementById('see-more').addEventListener('click', function() {
+        if (!isMoreVisible) {
+
+            const moreText = document.createElement('div');
+            moreText.classList.add('more-info'); 
+            moreText.innerHTML = `
+                <p>We want to create clothes that are comfortable and stylish so that everyone feels good and inspired when they wear them. As we dive into this project, we’re excited to explore how fashion allows people to express themselves. We’d love for you to be a part of this journey with us</p>
+                <h3>Our Team Members</h3>
+                <ul>
+                    <li>
+                        <strong>Drake Dela Cruz</strong>: Leader - I'm in charge of everything, I take on a big role-- I handle the overall design and planning of the website. This means I make sure everything looks good and is easy to use. I also code the website, which is how we bring our ideas to life online. Basically, I tie everything together by overseeing the technical side and ensuring that the site runs smoothly.
+                    </li>
+                    <li>
+                        <strong>Mark Justine Lucero</strong>:  -  This member is in charge of making sure the website is finished and runs without any bugs. He carefully check the code to ensure everything works smoothly.
+                    </li>
+                    <li>
+                        <strong>Julia Cruz</strong>: This member is in charge of picking the website's name and deciding on its main topic. Julia and I spend time brainstorming ideas that will connect with our audience and reflect what we want to achieve. her goal is to come up with a catchy name and a clear focus for the site so that visitors know what we're all about right away.
+                    </li>
+                    <li>
+                        <strong>Alicia Gabrielle Versoza</strong>: She is responsible for designing the website. She contribute an attractive and user-friendly layout, making sure that the look and feel of the site match our goals and vision.
+                    </li>
+                </ul>
+            `;
+
+            moreText.style.textAlign = 'center';
+            moreText.style.marginTop = '15px';
+
+            document.querySelector('.about-content').appendChild(moreText);
+            this.textContent = 'See Less';
+            isMoreVisible = true;
+        } else {
+
+            const moreInfo = document.querySelector('.more-info');
+            if (moreInfo) {
+                moreInfo.remove(); 
+            }
+            this.textContent = 'See More';
+            isMoreVisible = false;
+        }
+    });
+</script>
+
+<section id="contact">
+    <h2>Contact Us</h2>
+    <p>If you have any inquiries, feel free to reach out!</p>
+
+    <div class="contact-details">
+        <div class="contact-item">
+            <i class="fa-solid fa-envelope"></i>
+            <a href="mailto:suburbthread@gmail.com">info@Suburbthread.com</a>
+        </div>
+        <div class="contact-item">
+            <i class="fa-solid fa-phone"></i> 
+            <a href="tel:+123456789">+1 234 567 890</a>
+        </div>
+    </div>
+
+    <div class="social-icons">
+        <a href="https://facebook.com" target="_blank" class="icon facebook">
+            <i class="fa-brands fa-facebook"></i>
+        </a>
+        <a href="https://twitter.com" target="_blank" class="icon twitter">
+            <i class="fa-brands fa-x-twitter"></i>
+        </a>
+        <a href="https://instagram.com" target="_blank" class="icon instagram">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+    </div>
+</section>
+
+    </main>
+
+    <footer>
+        <p>© 2024 Suburb Thread Store. All rights reserved.</p>
+    </footer>
+</body>
+</html>
